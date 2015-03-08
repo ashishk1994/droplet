@@ -1,6 +1,7 @@
 {
   "coffee-script": "../vendor/coffee-script",
   "acorn": "../vendor/acorn",
+  "htmlparser": "../vendor/htmlparser",
   "droplet-view": "view",
   "droplet-controller": "controller",
   "droplet-model": "model",

@@ -1,5 +1,4 @@
-
-define ['droplet-helper', 'droplet-model', 'droplet-parser', 'acorn'], (helper, model, parser, acorn) ->
+define ['droplet-helper', 'droplet-model', 'droplet-parser', 'htmlparser'], (helper, model, parser, htmlparser) ->
   COLORS = {
     'SequenceExpression': 'command'
   }
@@ -35,15 +34,27 @@ define ['droplet-helper', 'droplet-model', 'droplet-parser', 'acorn'], (helper, 
     getClasses: () ->
       return NEVER_PAREN
 
+    gettagloc: (startl, startc, endl, endc) ->
+      return {
+        start: {
+          line: 0
+          column: 0
+        }
+        end: {
+          line: 0
+          column: 0
+        }
+      }
+
     markRoot: ->
-        
+        console.log htmlparser.testByme()
         #console.log @text
         #console.log @lines
         
         for line, i in @lines
           @cur = line.split ','
           #console.log i
-          console.log @cur
+          #console.log @cur
           # Not allowing the blocks of zero length
           if line.length > 0
             @addBlock
@@ -71,6 +82,6 @@ define ['droplet-helper', 'droplet-model', 'droplet-parser', 'acorn'], (helper, 
                 st = st + cr.length + 1
 
     isComment: (str) ->
-      str.match(/^\s*#.*$/)?
+      str.match(/^\s*\/\/.*$/)?
 
   return parser.wrapParser csv
